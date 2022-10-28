@@ -15,7 +15,7 @@ const Book = (props) => {
             setIsFavorite(true)
         }
 
-    }, [])
+    }, [book.name])
 
     const toggleFavorite = () => {
         console.log('!isFavorite?', !isFavorite)

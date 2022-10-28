@@ -7,17 +7,19 @@ const ButtonMoreCharacters = (props) => {
     const {book, currentCharacters, setCurrentCharacters, isLoading, setIsLoading} = props 
 
     const getMoreCharacters = async () => {
-        setIsLoading(true)
-        const index = Object.keys(currentCharacters).length
-        getThreeNextCharacters(index, book).then((response) => {
-            const newCharacters = {
-                [index+1]: response[0],
-                [index+2]: response[1],
-                [index+3]: response[2]
-            }
-            setCurrentCharacters(Object.assign(currentCharacters, newCharacters))
-            setIsLoading(false)
-        })
+        if (!isLoading) {
+            setIsLoading(true)
+            const index = Object.keys(currentCharacters).length
+            getThreeNextCharacters(index, book).then((response) => {
+                const newCharacters = {
+                    [index+1]: response[0],
+                    [index+2]: response[1],
+                    [index+3]: response[2]
+                }
+                setCurrentCharacters(Object.assign(currentCharacters, newCharacters))
+                setIsLoading(false)
+            })
+        }
     }
 
     return (

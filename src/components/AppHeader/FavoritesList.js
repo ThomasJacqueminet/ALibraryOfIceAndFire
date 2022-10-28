@@ -1,6 +1,6 @@
 import { AppBar, Box, Card, Container, Dialog, IconButton, Slide, Toolbar, Typography } from "@mui/material";
 import { Close } from '@mui/icons-material';
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Transition = forwardRef(function Transition(props, ref) {
