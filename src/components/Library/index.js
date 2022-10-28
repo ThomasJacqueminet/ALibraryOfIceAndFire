@@ -11,7 +11,7 @@ const Library = () => {
 
     return(
         <Container sx={{marginTop: '50px'}}>
-            <MenuBookIcon/> 3 livres dans la bibliothèque
+            <MenuBookIcon/> {books.length} livres dans la bibliothèque
             <Box sx={{
                     display: 'grid',
                     gap: 5,
