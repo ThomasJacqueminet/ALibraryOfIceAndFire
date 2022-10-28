@@ -14,7 +14,7 @@ const AppHeader = () => {
           >
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            A Song of Ice And Fire
+            A Libray Of Ice And Fire
           </Typography>
         </Toolbar>
       </AppBar>

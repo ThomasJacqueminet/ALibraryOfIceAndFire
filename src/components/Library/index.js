@@ -2,23 +2,28 @@ import { Box, Container } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Book from '../Book';
 
-const Library = () => {
+import booksFetch from './WrapBooksPromise';
 
-  return(
-      <Container sx={{marginTop: '50px'}}>
-        <MenuBookIcon/> 3 livres dans la bibliothèque
-        <Box sx={{
-              display: 'grid',
-              gap: 5,
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              marginTop: '50px'
-            }}
-        >
-            <Book/>
-            <Book/>
-            <Book/>
-        </Box>
-      </Container>
+const resource = booksFetch();
+
+const Library = () => {
+    const books = resource.books.read()
+
+    return(
+        <Container sx={{marginTop: '50px'}}>
+            <MenuBookIcon/> 3 livres dans la bibliothèque
+            <Box sx={{
+                    display: 'grid',
+                    gap: 5,
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    marginTop: '50px'
+                }}
+            >
+                {
+                    books.map(() => <Book />)
+                }
+            </Box>
+        </Container>
     )
 }
 
