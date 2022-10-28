@@ -2,16 +2,16 @@ import { Button, Card, CardActions, CardContent, Typography } from "@mui/materia
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 
 const Character = (props) => {
-    const {data} = props 
+    const {character} = props 
 
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Prenom Nom
+                    {character.name ? character.name : character.aliases[0]}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Titre
+                    {character.titles[0]}
                 </Typography>
             </CardContent>
             <CardActions>

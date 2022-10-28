@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, Dialog, IconButton, Slide, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, Dialog, IconButton, Slide, Toolbar, Typography } from "@mui/material";
 import { Person4, Close } from '@mui/icons-material';
 import { forwardRef, useEffect, useState } from "react";
 import Character from "../Character";
@@ -26,7 +26,7 @@ const CharactersList = (props) => {
         if (open) {
             fetchData()
         }
-    }, [open])
+    }, [open, book])
 
     const handleClose = () => {
         setOpen(false);
@@ -35,7 +35,7 @@ const CharactersList = (props) => {
     const getCharactersContent = () => {
         let itemsList = []
         Object.keys(currentCharacters).forEach((key) => {
-            itemsList.push(<Character />)
+            itemsList.push(<Character key={key} character={currentCharacters[key].data}/>)
         })
         return itemsList
     }
@@ -57,10 +57,13 @@ const CharactersList = (props) => {
                     >
                         <Close />
                     </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {book.name}
+                    </Typography>
                 </Toolbar>
             </AppBar>
             <Container sx={{marginTop: '10%'}}>
-                <Person4/> 100 personnages dans ce livre
+                <Person4/> {book.characters.length} personnages dans ce livre
                 <Box sx={{
                     display: 'grid',
                     gap: 5,
