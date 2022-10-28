@@ -20,6 +20,9 @@ const Book = () => {
                 Nombre de pages pages  
             </Typography>
         </CardContent>
+        <CardActions>
+            <Button size="small"><Person4/>Personnages</Button>
+        </CardActions>
     </Card>
     )
 }
