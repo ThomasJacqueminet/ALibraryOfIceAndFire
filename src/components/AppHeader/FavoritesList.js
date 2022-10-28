@@ -1,6 +1,7 @@
-import { AppBar, Box, Container, Dialog, IconButton, Slide, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Card, Container, Dialog, IconButton, Slide, Toolbar, Typography } from "@mui/material";
 import { Close } from '@mui/icons-material';
 import { forwardRef, useEffect } from "react";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -9,12 +10,25 @@ const Transition = forwardRef(function Transition(props, ref) {
 const FavoritesList = (props) => {
     const {open, setOpen} = props 
 
-    useEffect( () => {
-
-    }, [open])
-
     const handleClose = () => {
         setOpen(false);
+    }
+
+
+    const getFavoritesBooks = () => {
+        let itemsList = []
+        Object.keys(sessionStorage).forEach((value, key) => {
+            if (sessionStorage.getItem(value) === 'true') {
+                itemsList.push(
+                    <Card key={key}>
+                        <Typography gutterBottom variant="h5" component="div">
+                            <MenuBookIcon /> {value}
+                        </Typography>
+                    </Card>
+                    )
+            }
+        })
+        return itemsList
     }
 
     return(
@@ -48,6 +62,9 @@ const FavoritesList = (props) => {
                     marginTop: '50px'
                     }}
                 >
+                    {
+                        getFavoritesBooks()
+                    }
                 </Box>
             </Container>
         </Dialog>

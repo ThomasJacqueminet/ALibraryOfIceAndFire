@@ -1,11 +1,28 @@
 import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 import Person4 from '@mui/icons-material/Person4';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorderOutlined';
 import CharactersList from "../CharactersList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Book = (props) => {
     const {book} = props 
     const [openCharactersList, setOpenCharactersList] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(false)
+
+    useEffect( () => {
+        if(window.sessionStorage.getItem(book.name) === "true") {
+            setIsFavorite(true)
+        }
+
+    }, [])
+
+    const toggleFavorite = () => {
+        console.log('!isFavorite?', !isFavorite)
+        setIsFavorite(!isFavorite)
+        window.sessionStorage.removeItem(book.name);
+        window.sessionStorage.setItem(book.name, !isFavorite);
+    }
 
     return(
         <Card sx={{ maxWidth: 345 }}>
@@ -23,8 +40,11 @@ const Book = (props) => {
                     {book.numberOfPages} pages  
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{display: "flex", justifyContent: 'space-between'}}>
                 <Button size="small" onClick={() => setOpenCharactersList(true)}><Person4/>Personnages</Button>
+                <Button onClick={() => toggleFavorite()}>
+                    { isFavorite ? <FavoriteIcon/> : <FavoriteBorder/>}
+                </Button>
             </CardActions>
             <CharactersList book={props.book} setOpen={setOpenCharactersList} open={openCharactersList}/>
         </Card>
