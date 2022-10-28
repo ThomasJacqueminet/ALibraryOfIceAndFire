@@ -3,6 +3,8 @@ import { Person4, Close } from '@mui/icons-material';
 import { forwardRef, useEffect, useState } from "react";
 import Character from "../Character";
 import { getThreeFirstCharacters } from "../../api/CharacterApi";
+import ButtonMoreCharacters from "./ButtonMoreCharacters";
+import CharacterLoading from "../Character/CharacterLoading";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -11,6 +13,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 const CharactersList = (props) => {
     const {open, setOpen, book} = props 
     const [currentCharacters, setCurrentCharacters] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect( () => {
         const fetchData = async () => {
@@ -38,6 +41,14 @@ const CharactersList = (props) => {
             itemsList.push(<Character key={key} character={currentCharacters[key].data}/>)
         })
         return itemsList
+    }
+
+    const getIsLoadingContent = () => {
+        let loadingContent = ''
+        if (isLoading) {
+            loadingContent = <CharacterLoading/>
+        }
+        return loadingContent
     }
 
     return(
@@ -72,7 +83,12 @@ const CharactersList = (props) => {
                     }}
                 >
                     { getCharactersContent() }
+                    { getIsLoadingContent() }
                 </Box>
+                
+                <ButtonMoreCharacters book={book}
+                currentCharacters={currentCharacters} setCurrentCharacters={setCurrentCharacters}
+                isLoading={isLoading} setIsLoading={setIsLoading}/>
             </Container>
         </Dialog>
     )

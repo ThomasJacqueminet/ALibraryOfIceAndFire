@@ -16,7 +16,7 @@ const ModalCharactersInfo = (props) => {
         >
             <Box sx={modaleStyle}>
                 <Typography id="modal-modal-title" variant="h4" component="h2">
-                    {character.gender == 'Male' ? <MaleIcon/> : <FemaleIcon/> }
+                    {character.gender === 'Male' ? <MaleIcon/> : <FemaleIcon/> }
                     {character.name ? character.name : character.aliases[0]}
                 </Typography>
 
