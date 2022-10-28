@@ -1,6 +1,7 @@
-import { AppBar, Container, Dialog, IconButton, Slide, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, Dialog, IconButton, Slide, Toolbar } from "@mui/material";
 import { Person4, Close } from '@mui/icons-material';
 import { forwardRef } from "react";
+import Character from "../Character";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -34,6 +35,17 @@ const CharactersList = (props) => {
         </AppBar>
         <Container sx={{marginTop: '10%'}}>
             <Person4/> 100 personnages dans ce livre
+            <Box sx={{
+                display: 'grid',
+                gap: 5,
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                marginTop: '50px'
+                }}
+            >
+                <Character />
+                <Character />
+                <Character />
+            </Box>
         </Container>
     </Dialog>
     )
