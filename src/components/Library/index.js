@@ -20,7 +20,7 @@ const Library = () => {
                 }}
             >
                 {
-                    books.map(() => <Book />)
+                    books.map((book, key) => <Book key={key} book={book}/>)
                 }
             </Box>
         </Container>
